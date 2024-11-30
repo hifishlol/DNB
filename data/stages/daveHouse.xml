@@ -1,0 +1,6 @@
+<!DOCTYPE codename-engine-stage>
+<stage zoom="0.8" name="daveHouse">
+    <gf x='300' y='-60'/>
+	<dad x='50' y='270'/>
+	<boyfriend x='843' y='270'/>
+</stage>

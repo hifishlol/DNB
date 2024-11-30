@@ -1,0 +1,12 @@
+<!DOCTYPE codename-engine-character>
+<character y="-170" sprite="dave_sheet" icon="dave" isGF="false" color="#0F5FFF">
+	<anim name="idle" anim="idle0" x="0" y="0" fps="24" loop="false"/>
+	<anim name="singUP" anim="up0" x="-15" y="22" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="down0" x="-30" y="18" fps="24" loop="false"/>
+	<anim name="singLEFT" anim="left0" x="2" y="14" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="right0" x="-29" y="3" fps="24" loop="false"/>
+	<anim name="singUPmiss" anim="up miss0" x="-16" y="23" fps="24" loop="false"/>
+	<anim name="singDOWNmiss" anim="down miss0" x="-26" y="13" fps="24" loop="false"/>
+	<anim name="singLEFTmiss" anim="left miss0" x="5" y="14" fps="24" loop="false"/>
+	<anim name="singRIGHTmiss" anim="right miss0" x="-40" y="1" fps="24" loop="false"/>
+</character>

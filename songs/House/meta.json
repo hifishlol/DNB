@@ -1,0 +1,15 @@
+{
+	"opponentModeAllowed": false,
+	"difficulties": [
+		"NORMAL"
+	],
+	"icon": "dave",
+	"parsedColor": -7179779,
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "House",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 230,
+	"name": "House"
+}
