@@ -2,6 +2,15 @@ import flixel.text.FlxText.FlxTextBorderStyle;
 import flixel.ui.FlxBar;
 import flixel.ui.FlxBar.FlxBarFillDirection;
 import flixel.util.FlxStringUtil;
+import SubtitleManager;
+import flixel.math.FlxBasePoint;
+
+public static var nightColor:FlxColor = 0xFF878787;
+public static var sunsetColor:FlxColor = 0xFFFF8FB2;
+
+public static var noMiss:Bool = false;
+
+var detailsText:String = '';
 
 var font:String = Paths.font("comic.ttf");
 var fontScaler:Int = 1;
@@ -9,6 +18,7 @@ var songWatermark:FlxText;
 var fuckCam:FlxCamera;
 var camNoteOffset:Array<Int> = [0,0];
 var timeBarText:FlxText;
+public static var subtitleManager:SubtitleManager;
 final ogFPS = FlxG.drawFramerate;
 
 function setIntroSounds(blah:String){
@@ -19,7 +29,27 @@ function destroy(){
     FlxG.drawFramerate = FlxG.updateFramerate = ogFPS; 
 }
 
+PauseSubState.script = 'data/scripts/pause';
+
 function postCreate(){
+    switch (FlxG.random.int(0, 5))
+    {
+        case 0:
+            trace("secret dick message ???");
+        case 1:
+            trace("welcome baldis basics crap");
+        case 2:
+            trace("Hi, song genie here. You're playing " + SONG.meta.name + ", right?");
+        case 3:
+            trace('im not doing this dumb dialogue trace shit for a stupid thing nobody cares about');
+        case 4:
+            trace("suck my balls");
+        case 5:
+            trace('i hate sick');
+        case 6:
+            trace('lmao secret message hahahaha you cant get me hahahahah secret message bambi phone do you want do you want phone phone phone phone');
+    }
+
     FlxG.drawFramerate = FlxG.updateFramerate = 144; //for the sake of lerps i guess
 
     var introSoundsPrefix = '';
@@ -131,6 +161,10 @@ function postCreate(){
     timeBarText.cameras = [fuckCam];
 
     add(timeBarText);
+
+    subtitleManager = new SubtitleManager(fuckCam);
+    add(subtitleManager);
+    add(subtitleManager.fuck);
 }
 
 var actualP1dim = [150,150];
@@ -153,6 +187,9 @@ function onCountdown(e){
     }
 }
 
+var scoreTexts:Array<String> = [getTextString('play_score'), getTextString('play_miss'), getTextString('play_accuracy')]; 
+//running getTextString on update would be very performance heavy
+
 function postUpdate(e){
     switch (SONG.meta.name.toLowerCase())
     {
@@ -165,14 +202,14 @@ function postUpdate(e){
             " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(1,9)) + "% ";
         default:
             scoreTxt.text = 
-            'Score:' + Std.string(songScore) + " | " + 
-            'Misses:' + misses +  " | " + 
-            'Accuracy:' + (accuracy < 0 ? '0' : truncateFloat(accuracy*100, 2)) + "%";
+            scoreTexts[0] + Std.string(songScore) + " | " + 
+            scoreTexts[1] + misses +  " | " + 
+            scoreTexts[2] + (accuracy < 0 ? '0' : truncateFloat(accuracy*100, 2)) + "%";
             // LanguageManager.getTextString('play_score') + Std.string(songScore) + " | " + 
             // LanguageManager.getTextString('play_miss') + misses +  " | " + 
             // LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
     }
-    if (FlxG.save.data.noMiss)
+    if (noMiss)
     {
         scoreTxt.text += " | NO MISS!!";
     }
@@ -219,5 +256,23 @@ function onNoteHit(e){
         default:
             camNoteOffset[0] = 0;
             camNoteOffset[1] = 0;
+    }
+}
+
+function onPlayerMiss(e){
+    if(noMiss) e.cancel();
+}
+
+public static function makeInvisibleNotes(invisible:Bool)
+{
+    if (invisible)
+    {
+            FlxTween.cancelTweensOf(camHUD);
+            FlxTween.tween(camHUD, {alpha: 0}, 1);
+    }
+    else
+    {
+        FlxTween.cancelTweensOf(camHUD);
+        FlxTween.tween(camHUD, {alpha: 1}, 1);
     }
 }

@@ -29,9 +29,17 @@ function update(elapsed){
 }
 
 function onSelectOption(e){
-    trace(e.name);
     switch(e.name){
+        case 'Restart Song':
+            e.cancel();
+            FlxG.resetState();
         case 'No Miss Mode':
-            trace('test');
+            noMiss = !noMiss;
+            var nm = PlayState.SONG.meta.name.toLowerCase();
+            if (['exploitation', 'cheating', 'unfairness', 'recursed', 'glitch', 'master', 'supernovae'].contains(nm))
+            {
+                PlayState.instance.health = 0;
+                close();
+            }
     }
 }

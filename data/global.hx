@@ -8,7 +8,8 @@ import funkin.backend.MusicBeatState;
 static var seenSplash:Bool = false;
 
 var redirectStates:Map<FlxState, String> = [
-    MainMenuState => "MainMenu"
+    MainMenuState => "MainMenu",
+    StoryMenuState => "StoryMenu",
 ];
 
 function preStateSwitch() {
@@ -22,7 +23,16 @@ function preStateSwitch() {
             FlxG.game._requestedState = new ModState(redirectStates.get(redirectState));
 }
 
-//sound tray
+//soundtray+fps
+
+final ogDtfs:Array<TextFormat> = [FlxG.game.soundTray.text.defaultTextFormat, 
+    Framerate.fpsCounter.fpsNum.defaultTextFormat, 
+    Framerate.fpsCounter.fpsLabel.defaultTextFormat,
+    Framerate.memoryCounter.memoryText.defaultTextFormat,
+    Framerate.memoryCounter.memoryPeakText.defaultTextFormat,
+    Framerate.codenameBuildField.defaultTextFormat
+];
+
 var theDtf:TextFormat = new TextFormat(Paths.getFontName(Paths.font("comic.ttf")), 8, 0xffffff);
 theDtf.align = TextFormatAlign.CENTER;
 FlxG.game.soundTray.text.defaultTextFormat = theDtf;
@@ -39,12 +49,22 @@ Framerate.memoryCounter.memoryText.defaultTextFormat = theDtf;
 Framerate.memoryCounter.memoryPeakText.defaultTextFormat = theDtf;
 Framerate.codenameBuildField.defaultTextFormat = theDtf;
 
+function destroy(){
+    FlxG.game.soundTray.text.defaultTextFormat = ogDtfs[0];
+    Framerate.fpsCounter.fpsNum.defaultTextFormat = ogDtfs[1];
+    Framerate.fpsCounter.fpsLabel.defaultTextFormat = ogDtfs[2];
+    Framerate.memoryCounter.memoryText.defaultTextFormat = ogDtfs[3];
+    Framerate.memoryCounter.memoryPeakText.defaultTextFormat = ogDtfs[4];
+    Framerate.codenameBuildField.defaultTextFormat = ogDtfs[5]; //"theres probably a better way of doing this" Shhhhhhhh
+
+    FlxG.game.soundTray.text.text = "VOLUME";
+}
+
 var icon:Image = Paths.assetsTree.getAsset('assets/appIcons/dave.png', 'IMAGE');
 Application.current.window.setIcon(icon);
 
 WindowUtils.winTitle = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
 
-FlxG.save.data.noMiss = false; //dont ask
 FlxG.save.data.language ??= 'en-US';
 FlxG.save.data.hasSeenSplash ??= false;
 
@@ -84,6 +104,57 @@ public static function getTextString(stringName:String)
     }
 }
 
+function isLocale():Bool
+{
+    if (FlxG.save.data.language != 'en-US')
+    {
+        return true;
+    }
+    return false;
+}
+
+public static function dnbFile(file:String, ?library:String)
+{
+    var defaultReturnPath = Paths.getPath(file, library);
+    if (isLocale())
+    {
+        var langaugeReturnPath = getPath('locale/'+FlxG.save.data.language+'/'+ file, library);
+        if (FileSystem.exists(langaugeReturnPath))
+        {
+            return langaugeReturnPath;
+        }
+        else
+        {
+            return defaultReturnPath;
+        }
+    }
+    else
+    {
+        return defaultReturnPath;
+    }
+}
+
+public static function dnbImage(key:String, ?library:String)
+{
+    var defaultReturnPath = Paths.image(key, library);
+    if (isLocale())
+    {
+        var langaugeReturnPath = getPath('locale/'+FlxG.save.data.language+'/images/'+key+'.png', library);
+        if (FileSystem.exists(langaugeReturnPath))
+        {
+            return langaugeReturnPath;
+        }
+        else
+        {
+            return defaultReturnPath;
+        }
+    }
+    else
+    {
+        return defaultReturnPath;
+    }
+}
+
 public static function getMinAndMax(value1:Float, value2:Float)
 {
     var min = Math.min(value1, value2);
@@ -92,4 +163,19 @@ public static function getMinAndMax(value1:Float, value2:Float)
     var minAndMaxs:Array = [min, max];
     
     return minAndMaxs;
+}
+
+public static function getBackgroundColor(stage:String)
+{
+    var variantColor:FlxColor = FlxColor.WHITE;
+    switch (stage)
+    {
+        case 'night':
+            variantColor = nightColor;
+        case 'sunset':
+            variantColor = sunsetColor;
+        default:
+            variantColor = FlxColor.WHITE;
+    }
+    return variantColor;
 }

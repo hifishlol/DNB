@@ -1,0 +1,17 @@
+{
+	"beatsPerMeasure": 4,
+	"opponentModeAllowed": false,
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"bpm": 113,
+	"difficulties": [
+		"NORMAL"
+	],
+	"needsVoices": true,
+	"parsedColor": -14303433,
+	"displayName": "Maze",
+	"icon": "bambi",
+	"name": "Maze",
+	"color": "#25BF37",
+	"customValues": {}
+}

@@ -33,7 +33,7 @@ function update(e){
 }
 
 function onPlayerMiss(e){
-    if(e.noteType == 'phone'){
+    if(e.noteType == 'phone' && !noMiss){
         var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
         boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
         dad.playAnim(dad.animation.getByName("singThrow") == null ? 'singSmash' : 'singThrow', true);

@@ -1,5 +1,4 @@
 import Date;
-import LanguageManager;
 import flixel.text.FlxText.FlxTextBorderStyle;
 import flixel.group.FlxGroup;
 import funkin.menus.ModSwitchMenu;
