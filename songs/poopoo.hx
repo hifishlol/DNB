@@ -15,7 +15,7 @@ var detailsText:String = '';
 var font:String = Paths.font("comic.ttf");
 var fontScaler:Int = 1;
 var songWatermark:FlxText;
-var fuckCam:FlxCamera;
+public static var fuckCam:FlxCamera;
 var camNoteOffset:Array<Int> = [0,0];
 var timeBarText:FlxText;
 public static var subtitleManager:SubtitleManager;
@@ -55,11 +55,11 @@ function postCreate(){
     var introSoundsPrefix = '';
     switch (SONG.meta.name.toLowerCase())
     {
-        case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' |
-        'memory' | 'vs-dave-rap' | 'vs-dave-rap-two':
+        case 'house' | 'insanity' | 'polygonized' | 'bonus song' | 'interdimensional' | 'five nights' |
+        'memory' | 'vs dave rap' | 'vs dave rap two':
             introSoundsPrefix = 'introSounds/dave/';
             setIntroSounds(introSoundsPrefix);
-        case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
+        case 'blocked' | 'cheating' | 'corn theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
         'shredder' | 'supernovae' | 'unfairness':
             introSoundsPrefix = 'introSounds/bambi/';
             setIntroSounds(introSoundsPrefix);

@@ -1,6 +1,7 @@
 import openfl.Lib;
 import flixel.text.FlxText.FlxTextBorderStyle;
 import funkin.backend.assets.ModsFolder;
+import funkin.backend.MusicBeatState;
 
 var animatedIntro:FlxSprite;
 
@@ -68,6 +69,7 @@ function onComplete(Tween:FlxTween):Void
     FlxG.cameras.bgColor = _cachedBgColor;
     FlxG.fixedTimestep = _cachedTimestep;
     FlxG.autoPause = _cachedAutoPause;
+    MusicBeatState.skipTransIn = MusicBeatState.skipTransOut = true;
     ModsFolder.reloadMods();
     FlxG.game._gameJustStarted = true;
 

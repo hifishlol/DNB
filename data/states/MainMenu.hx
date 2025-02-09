@@ -45,7 +45,7 @@ public static var firstStart:Bool = true;
 public static var finishedFunnyMove:Bool = false;
 
 public static var daRealEngineVer:String = 'Dave';
-public static var engineVer:String = '3.0b';
+public static var engineVer:String = '3.0b (CNE Port)';
 
 public static var engineVers:Array<String> = 
 [
@@ -54,7 +54,6 @@ public static var engineVers:Array<String> =
     'Tristan'
 ];
 
-public static var kadeEngineVer:String = "DAVE";
 public static var gameVer:String = "0.2.7.1";
 
 var bg:FlxSprite;
@@ -334,7 +333,7 @@ function update(){
         persistentUpdate = false;
         persistentDraw = true;
     }
-    if (FlxG.sound.music.volume < 0.8)
+    if (FlxG.sound.music != null && FlxG.sound.music.volume < 0.8)
     {
         FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
     }
@@ -424,7 +423,7 @@ function update(){
                                 case 'ost':
                                     FlxG.switchState(new MusicPlayerState());
                                 case 'credits':
-                                    FlxG.switchState(new CreditsMenuState());
+                                    FlxG.switchState(new ModState('CreditsMenu'));
                             }
                         });
                     }

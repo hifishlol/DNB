@@ -1,0 +1,11 @@
+<!DOCTYPE codename-engine-character>
+<character y="-180" sprite="Splitathon_Dave" icon="dave" isGF="false" color="#0F5FFF">
+	<anim name="idle" anim="idle0" x="0" y="0" fps="24" loop="false"/>
+	<anim name="singUP" anim="up0" x="25" y="11" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="down0" x="54" y="-12" fps="24" loop="false"/>
+	<anim name="singLEFT" anim="left0" x="54" y="1" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="right0" x="13" y="-4" fps="24" loop="false"/>
+	<anim name="happy" anim="happy" x="0" y="0" fps="24" loop="false"/>
+	<anim name="scared" anim="scared" x="0" y="0" fps="24" loop="false"/>
+	<anim name="what" anim="what" x="-17" y="0" fps="24" loop="false"/>
+</character>

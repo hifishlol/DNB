@@ -21,7 +21,7 @@ var grpLocks:FlxGroup;
 var weeks:Array = [
     {songList: ['Warmup'], weekName: getTextString('story_tutorial'), weekColor: 0xFF8A42B7, bannerName: 'warmup', id: 'warmup'},
     {songList: ['House', 'Insanity', 'Polygonized'], weekName: getTextString('story_daveWeek'), weekColor: 0xFF4965FF, bannerName: 'DaveHouse', id: 'dave'},
-    {songList: ['Blocked', 'Corn-Theft', 'Maze'], weekName: getTextString('story_bambiWeek'), weekColor: 0xFF00B515, bannerName: 'bamboi', id: 'bambi'},
+    {songList: ['Blocked', 'Corn Theft', 'Maze'], weekName: getTextString('story_bambiWeek'), weekColor: 0xFF00B515, bannerName: 'bamboi', id: 'bambi'},
     {songList: ['Splitathon'], weekName: getTextString('story_finale'), weekColor: 0xFF00FFFF, bannerName: 'splitathon', id: 'splitathon'},
     {songList: ['Shredder', 'Greetings', 'Interdimensional', 'Rano'], weekName: getTextString('story_festivalWeek'), weekColor: 0xFF800080, bannerName: 'festival', id: 'festival'},
 ];

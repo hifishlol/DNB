@@ -2,12 +2,11 @@ var sunsetBG:FunkinSprite;
 var nightBG:FunkinSprite; //fucking fuck
 
 function create(){
+    var skyType = (PlayState.SONG.meta.customValues?.skyType ?? 'sky');
     dad.x += 200;
     dad.y += 340;
     boyfriend.y += 340;
     gf.x += 30;
-
-    var skyType = (PlayState.SONG.meta.customValues?.skyType ?? 'sky');
 
     var bg:FunkinSprite = new FunkinSprite(-600, -200, Paths.image('backgrounds/shared/'+skyType));
     bg.scrollFactor.set(0.6,0.6);
@@ -65,14 +64,7 @@ function create(){
     var variantColor:FlxColor = getBackgroundColor(skyType);
 
     for(i in backgroundSprites) i.color = variantColor;
-    // flatgrass.color = variantColor;
-    // hills.color = variantColor;
-    // farmHouse.color = variantColor;
-    // grassLand.color = variantColor;
-    // cornFence.color = variantColor;
-    // cornFence2.color = variantColor;
-    // cornBag.color = variantColor;
-    // sign.color = variantColor;
+    for(i in [dad,boyfriend,gf]) i.color = variantColor; //shut up
 
     if (['blocked', 'corn-theft', 'maze', 'mealie', 'indignancy'].contains(SONG.meta.name.toLowerCase()) /*&& !MathGameState.failedGame for now*/ && FlxG.random.int(0, 4) == 0)
     {
@@ -88,8 +80,7 @@ function create(){
 
     if (SONG.meta.name.toLowerCase() == 'splitathon')
     {
-        var picnic:BGSprite = new BGSprite('picnic', 1050, 650, Paths.image('backgrounds/farm/picnic_towel_thing', 'shared'), null);
-        sprites.insert(sprites.members.indexOf(cornBag), picnic);
+        var picnic:FunkinSprite = new FunkinSprite(1050, 650, Paths.image('backgrounds/farm/picnic_towel_thing'));
         picnic.color = variantColor;
         insert(members.indexOf(cornBag), picnic);
     }

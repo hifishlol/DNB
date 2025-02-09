@@ -1,5 +1,4 @@
 function create(){
-
     var bg:FunkinSprite = new FunkinSprite(-600, -300, Paths.image('backgrounds/shared/'+(PlayState.SONG.meta.customValues?.skyType ?? 'sky')));
     bg.scrollFactor.set(0.6,0.6);
     insert(0, bg);

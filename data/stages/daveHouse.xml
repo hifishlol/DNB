@@ -3,4 +3,5 @@
     <gf x='300' y='-60'/>
 	<dad x='50' y='270'/>
 	<boyfriend x='843' y='270'/>
+	<character name="dave-angey" x="20" y="250"/>
 </stage>

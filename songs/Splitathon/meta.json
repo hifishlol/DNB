@@ -1,0 +1,19 @@
+{
+	"beatsPerMeasure": 4,
+	"opponentModeAllowed": true,
+	"coopAllowed": true,
+	"stepsPerBeat": 4,
+	"bpm": 230,
+	"difficulties": [
+		"Normal"
+	],
+	"needsVoices": true,
+	"parsedColor": -1,
+	"displayName": "Splitathon",
+	"icon": "the-duo",
+	"name": "Splitathon",
+	"color": "#FFFFFF",
+	"customValues": {
+		"skyType": "sky_night"
+	}
+}

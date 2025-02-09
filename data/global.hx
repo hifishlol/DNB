@@ -8,6 +8,7 @@ import funkin.backend.MusicBeatState;
 static var seenSplash:Bool = false;
 
 var redirectStates:Map<FlxState, String> = [
+    TitleState => "Title",
     MainMenuState => "MainMenu",
     StoryMenuState => "StoryMenu",
 ];
@@ -63,10 +64,11 @@ function destroy(){
 var icon:Image = Paths.assetsTree.getAsset('assets/appIcons/dave.png', 'IMAGE');
 Application.current.window.setIcon(icon);
 
-WindowUtils.winTitle = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
+WindowUtils.winTitle = "Friday Night Funkin' | VS. Dave and Bambi 3.0 CNE Port";
 
 FlxG.save.data.language ??= 'en-US';
 FlxG.save.data.hasSeenSplash ??= false;
+FlxG.save.data.eyesores ??= true; 
 
 //languaaaaage manaaaager
 
@@ -170,9 +172,9 @@ public static function getBackgroundColor(stage:String)
     var variantColor:FlxColor = FlxColor.WHITE;
     switch (stage)
     {
-        case 'night':
+        case 'sky_night':
             variantColor = nightColor;
-        case 'sunset':
+        case 'sky_sunset':
             variantColor = sunsetColor;
         default:
             variantColor = FlxColor.WHITE;
